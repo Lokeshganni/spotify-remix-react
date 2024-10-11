@@ -1,0 +1,20 @@
+.home-main-container {
+  margin-top: 56px;
+  background-color: #181818;
+  min-height: calc(100vh - 56px);
+  padding: 20px 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .home-main-container {
+    margin: 0 0 0 6%;
+    min-height: 100vh;
+  }
+}
+
+.home-page-headings {
+  color: white;
+  font-family: 'Assistant';
+  font-size: 24px;
+  font-weight: bold;
+}

@@ -1,0 +1,27 @@
+.playlist-card-li-container {
+  list-style-type: none;
+  width: 30%;
+  margin-bottom: 16px;
+}
+
+.playlist-link-ele {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.playlist-card-thumbnail-img {
+  height: 82px;
+  width: 82px;
+  border-radius: 4px;
+}
+
+.playlist-name {
+  color: white;
+  font-weight: 600;
+  font-family: 'Assistant';
+  font-size: 12px;
+  margin-top: 6px;
+}
