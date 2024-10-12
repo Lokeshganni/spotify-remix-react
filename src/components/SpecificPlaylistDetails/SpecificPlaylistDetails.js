@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 
+import PlaylistInfo from '../PlaylistInfo/PlaylistInfo'
 import getApiData from '../../services/api'
 
 import './SpecificPlaylistDetails.css'
@@ -13,7 +14,6 @@ const SpecificPlaylistDetails = props => {
   const getSpecificPlaylistData = async () => {
     const url = `https://apis2.ccbp.in/spotify-clone/playlists-details/${id}`
     const data = await getApiData(url)
-    console.log(data)
     setSpecificPlaylist(data.apiRes)
   }
 
@@ -24,6 +24,11 @@ const SpecificPlaylistDetails = props => {
   return (
     <div>
       <h1>hiii</h1>
+      {specificPlaylist.length !== 0 ? (
+        <PlaylistInfo specificPlaylist={specificPlaylist} />
+      ) : (
+        <p>nothing</p>
+      )}
     </div>
   )
 }

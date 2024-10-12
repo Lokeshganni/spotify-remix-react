@@ -3,16 +3,16 @@ import {useEffect, useState} from 'react'
 import PlaylistCard from '../PlaylistCard/PlaylistCard'
 
 import getApiData from '../../services/api'
-import './EditorsChoice.css'
+import './NewReleases.css'
 
-const EditorsChoice = () => {
+const NewReleases = () => {
   const [playlistData, setPlaylistData] = useState([])
 
   const getData = async () => {
-    const url = 'https://apis2.ccbp.in/spotify-clone/featured-playlists'
+    const url = 'https://apis2.ccbp.in/spotify-clone/new-releases'
     const data = await getApiData(url)
-    // console.log(data.apiRes.playlists)
-    setPlaylistData(data.apiRes.playlists)
+    console.log(data.apiRes.albums)
+    setPlaylistData(data.apiRes.albums)
   }
 
   useEffect(() => {
@@ -32,4 +32,4 @@ const EditorsChoice = () => {
     </ul>
   )
 }
-export default EditorsChoice
+export default NewReleases

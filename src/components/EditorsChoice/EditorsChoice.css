@@ -1,6 +1,11 @@
 .editors-choice-ul-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .editors-choice-ul-container {
+    margin: 20px 0;
+  }
 }
