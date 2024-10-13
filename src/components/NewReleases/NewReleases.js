@@ -14,6 +14,8 @@ const apiStatusConstants = {
   failure: 'FAILURE',
 }
 
+const newRelease = true
+
 const NewReleases = () => {
   const [playlistData, setPlaylistData] = useState([])
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
@@ -49,7 +51,7 @@ const NewReleases = () => {
     <ul className="editors-choice-ul-container">
       {playlistData &&
         playlistData.items.map(each => (
-          <PlaylistCard key={each.id} playlist={each} />
+          <PlaylistCard newRelease={newRelease} key={each.id} playlist={each} />
         ))}
     </ul>
   )

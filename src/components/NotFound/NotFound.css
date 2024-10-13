@@ -1,0 +1,35 @@
+.not-found-container {
+  background-color: #181818;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 56px;
+  padding-bottom: 86px;
+  height: calc(100vh - 56px);
+}
+
+.not-found-container img {
+  width: 310px;
+  height: 179px;
+}
+
+@media screen and (min-width: 768px) {
+  .not-found-container img {
+    width: 636px;
+    height: 364px;
+  }
+}
+
+.not-found-container h1 {
+  font-family: 'Assistant';
+  font-size: 32px;
+  font-weight: 700;
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .not-found-container h1 {
+    font-size: 40px;
+  }
+}

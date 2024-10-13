@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom'
 
 import './PlaylistCard.css'
 
-const PlaylistCard = ({playlist}) => {
+const PlaylistCard = ({playlist, newRelease}) => {
   const {name, images, id} = playlist
   return (
     <li className="playlist-card-li-container">
@@ -10,7 +10,7 @@ const PlaylistCard = ({playlist}) => {
         <img
           className="playlist-card-thumbnail-img"
           src={images[0].url}
-          alt="featured playlist"
+          alt={newRelease ? 'new release album' : 'featured playlist'}
         />
         <p className="playlist-name">{name}</p>
       </Link>

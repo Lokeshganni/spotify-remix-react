@@ -1,8 +1,9 @@
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 import Login from './components/Login/login'
 import Home from './components/Home/home'
 import SpecificPlaylistDetails from './components/SpecificPlaylistDetails/SpecificPlaylistDetails'
+import NotFound from './components/NotFound/NotFound'
 
 import ProtectedRoute from './services/ProtectedRoute'
 
@@ -17,6 +18,8 @@ const App = () => (
       path="/editors-choice/:id"
       component={SpecificPlaylistDetails}
     />
+    <Route path="/not-found" component={NotFound} />
+    <Redirect to="/not-found" />
   </Switch>
 )
 

@@ -53,26 +53,26 @@ const Login = props => {
     setPassword(event.target.value)
   }
 
-  const handleSkipLogin = async () => {
-    setIsLoading(true)
-    const url = 'https://apis.ccbp.in/login'
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({
-        username: 'rahul',
-        password: 'rahul@2021',
-      }),
-    }
+  //   const handleSkipLogin = async () => {
+  //     setIsLoading(true)
+  //     const url = 'https://apis.ccbp.in/login'
+  //     const options = {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         username: 'rahul',
+  //         password: 'rahul@2021',
+  //       }),
+  //     }
 
-    const response = await fetch(url, options)
-    const data = await response.json()
+  //     const response = await fetch(url, options)
+  //     const data = await response.json()
 
-    if (response.ok) {
-      onFormSubmitSuccess(data.jwt_token)
-    } else {
-      onFormSubmitFailure(data.error_msg)
-    }
-  }
+  //     if (response.ok) {
+  //       onFormSubmitSuccess(data.jwt_token)
+  //     } else {
+  //       onFormSubmitFailure(data.error_msg)
+  //     }
+  //   }
 
   return (
     <>
@@ -105,7 +105,7 @@ const Login = props => {
               <div className="login-btn-container">
                 <button type="submit">LOGIN</button>
               </div>
-              <div className="skip-btn-container">
+              {/* <div className="skip-btn-container">
                 <button
                   onClick={handleSkipLogin}
                   className="skip-btn"
@@ -113,7 +113,7 @@ const Login = props => {
                 >
                   Skip Login
                 </button>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
