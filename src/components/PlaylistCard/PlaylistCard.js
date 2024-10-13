@@ -10,7 +10,7 @@ const PlaylistCard = ({playlist}) => {
         <img
           className="playlist-card-thumbnail-img"
           src={images[0].url}
-          alt={name}
+          alt="featured playlist"
         />
         <p className="playlist-name">{name}</p>
       </Link>

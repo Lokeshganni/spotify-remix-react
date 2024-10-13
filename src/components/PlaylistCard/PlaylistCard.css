@@ -8,6 +8,7 @@
 @media screen and (min-width: 768px) {
   .playlist-card-li-container {
     width: 16.6%;
+    margin-bottom: 20px;
   }
 }
 
@@ -38,4 +39,11 @@
   font-family: 'Assistant';
   font-size: 12px;
   margin-top: 6px;
+  color: #f8fafc;
+}
+
+@media screen and (min-width: 768px) {
+  .playlist-name {
+    font-size: 16px;
+  }
 }

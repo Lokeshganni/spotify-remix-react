@@ -1,0 +1,22 @@
+.track-item-li-container {
+  list-style-type: none;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.track-name {
+  font-family: 'Assistant';
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.track-duration {
+  font-family: 'Assistant';
+  font-size: 12px;
+  font-weight: 600;
+  color: #9b9b9b;
+}

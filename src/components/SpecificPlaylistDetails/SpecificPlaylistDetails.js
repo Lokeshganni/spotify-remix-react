@@ -1,12 +1,26 @@
 import {useEffect, useState} from 'react'
 
-import PlaylistInfo from '../PlaylistInfo/PlaylistInfo'
+import PlaylistOwnerInfo from '../PlaylistOwnerInfo/PlaylistOwnerInfo'
+import TrackItem from '../TrackItem/TrackItem'
+import AudioPlayer from '../AudioPlayer/AudioPlayer'
+import BackArrow from '../BackArrow/BackArrow'
+import TryAgain from '../TryAgain/TryAgain'
+import Loader from '../Loader/Loader'
+
 import getApiData from '../../services/api'
 
 import './SpecificPlaylistDetails.css'
 
+const apiStatusConstants = {
+  initial: 'INITIAL',
+  inProgress: 'IN_PROGRESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+}
+
 const SpecificPlaylistDetails = props => {
   const [specificPlaylist, setSpecificPlaylist] = useState({})
+  const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
 
   const {match} = props
   const {id} = match.params
@@ -14,23 +28,65 @@ const SpecificPlaylistDetails = props => {
   const getSpecificPlaylistData = async () => {
     const url = `https://apis2.ccbp.in/spotify-clone/playlists-details/${id}`
     const data = await getApiData(url)
-    setSpecificPlaylist(data.apiRes)
+
+    if (data.apiRes === 'failed') {
+      setApiStatus(apiStatusConstants.failure)
+    } else {
+      setSpecificPlaylist(data.apiRes)
+      setApiStatus(apiStatusConstants.success)
+    }
   }
 
   useEffect(() => {
     getSpecificPlaylistData()
   }, [])
 
-  return (
-    <div>
-      <h1>hiii</h1>
-      {specificPlaylist.length !== 0 ? (
-        <PlaylistInfo specificPlaylist={specificPlaylist} />
-      ) : (
-        <p>nothing</p>
-      )}
+  const renderSpecificPlaylistDetailsLoader = () => (
+    <div className="editors-choice-failure-container">
+      <Loader />
     </div>
   )
+
+  const handleTryAgain = () => {
+    getSpecificPlaylistData()
+  }
+
+  const renderSpecificPlaylistDetailsSuccess = () => (
+    <div className="specific-playlist-details-main-container">
+      <BackArrow />
+      {console.log(specificPlaylist)}
+      <div className="playlist-tracks-main-container">
+        <PlaylistOwnerInfo specificPlaylist={specificPlaylist} />
+        <ul>
+          {specificPlaylist.tracks.items.map(each => (
+            <TrackItem key={each.track.id} trackObj={each} />
+          ))}
+        </ul>
+      </div>
+      <AudioPlayer />
+    </div>
+  )
+
+  const renderSpecificPlaylistDetailsFailure = () => (
+    <div className="editors-choice-failure-container">
+      <TryAgain handleTryAgain={handleTryAgain} />
+    </div>
+  )
+
+  const renderSpecificPlaylistDetails = () => {
+    switch (apiStatus) {
+      case apiStatusConstants.inProgress:
+        return renderSpecificPlaylistDetailsLoader()
+      case apiStatusConstants.success:
+        return renderSpecificPlaylistDetailsSuccess()
+      case apiStatusConstants.failure:
+        return renderSpecificPlaylistDetailsFailure()
+      default:
+        return null
+    }
+  }
+
+  return <>{renderSpecificPlaylistDetails()}</>
 }
 
 export default SpecificPlaylistDetails

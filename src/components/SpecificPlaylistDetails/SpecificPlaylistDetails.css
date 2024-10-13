@@ -1,0 +1,10 @@
+.specific-playlist-details-main-container {
+  background-color: #181818;
+  min-height: 100vh;
+  border: 1px solid #181818;
+}
+
+.playlist-tracks-main-container {
+  margin: 56px 0;
+  padding: 24px;
+}

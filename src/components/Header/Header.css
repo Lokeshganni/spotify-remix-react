@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
+  z-index: 1;
 }
 
 @media screen and (min-width: 768px) {
@@ -36,6 +37,12 @@
   border: none;
   outline: none;
   background-color: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.sm-menu-btn:hover {
+  transform: scale(1.02);
 }
 
 .sm-menu-btn:active {
@@ -46,6 +53,33 @@
   width: 24px;
   height: 24px;
   color: white;
+}
+
+.sm-logout-btn-container {
+  background-color: transparent;
+  position: absolute;
+  bottom: -20px;
+  right: 28px;
+  width: 65px;
+  height: 30px;
+}
+
+.sm-logout-btn {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'HK Grotesk';
+  background-color: white;
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #171f46;
+}
+
+.sm-logout-btn:active {
+  transform: scale(0.96);
 }
 
 .header-container-lg {

@@ -25,7 +25,8 @@ const Login = props => {
     setErrMsg(errorMsg)
   }
 
-  const handleFormSubmit = async () => {
+  const handleFormSubmit = async e => {
+    e.preventDefault()
     setIsLoading(true)
     const url = 'https://apis.ccbp.in/login'
     const options = {
@@ -50,6 +51,27 @@ const Login = props => {
 
   const handlePassword = event => {
     setPassword(event.target.value)
+  }
+
+  const handleSkipLogin = async () => {
+    setIsLoading(true)
+    const url = 'https://apis.ccbp.in/login'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        username: 'rahul',
+        password: 'rahul@2021',
+      }),
+    }
+
+    const response = await fetch(url, options)
+    const data = await response.json()
+
+    if (response.ok) {
+      onFormSubmitSuccess(data.jwt_token)
+    } else {
+      onFormSubmitFailure(data.error_msg)
+    }
   }
 
   return (
@@ -82,6 +104,15 @@ const Login = props => {
               {errMsg && <p className="err-msg-para">*{errMsg}</p>}
               <div className="login-btn-container">
                 <button type="submit">LOGIN</button>
+              </div>
+              <div className="skip-btn-container">
+                <button
+                  onClick={handleSkipLogin}
+                  className="skip-btn"
+                  type="button"
+                >
+                  Skip Login
+                </button>
               </div>
             </form>
           </div>
