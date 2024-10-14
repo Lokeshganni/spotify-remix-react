@@ -1,3 +1,8 @@
+.not-found-back-arrow {
+  left: 7%;
+  border: 1px solid red;
+}
+
 .not-found-container {
   background-color: #181818;
   display: flex;

@@ -21,11 +21,13 @@ const apiStatusConstants = {
 const SpecificPlaylistDetails = props => {
   const [specificPlaylist, setSpecificPlaylist] = useState({})
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
+  const [audioUrl, setAudioUrl] = useState('')
 
   const {match} = props
   const {id} = match.params
 
   const getSpecificPlaylistData = async () => {
+    setApiStatus(apiStatusConstants.inProgress)
     const url = `https://apis2.ccbp.in/spotify-clone/playlists-details/${id}`
     const data = await getApiData(url)
 
@@ -33,6 +35,7 @@ const SpecificPlaylistDetails = props => {
       setApiStatus(apiStatusConstants.failure)
     } else {
       setSpecificPlaylist(data.apiRes)
+      setAudioUrl(data.apiRes.tracks.items[0].track.preview_url)
       setApiStatus(apiStatusConstants.success)
     }
   }
@@ -51,19 +54,27 @@ const SpecificPlaylistDetails = props => {
     getSpecificPlaylistData()
   }
 
+  const handleAudioUrl = url => {
+    setAudioUrl(url)
+  }
+
   const renderSpecificPlaylistDetailsSuccess = () => (
     <div className="specific-playlist-details-main-container">
       <BackArrow />
-      {console.log(specificPlaylist)}
+      {/* {console.log(specificPlaylist)} */}
       <div className="playlist-tracks-main-container">
         <PlaylistOwnerInfo specificPlaylist={specificPlaylist} />
         <ul>
           {specificPlaylist.tracks.items.map(each => (
-            <TrackItem key={each.track.id} trackObj={each} />
+            <TrackItem
+              handleAudioUrl={handleAudioUrl}
+              key={each.track.id}
+              trackObj={each}
+            />
           ))}
         </ul>
       </div>
-      <AudioPlayer />
+      <AudioPlayer audioUrl={audioUrl} />
     </div>
   )
 
