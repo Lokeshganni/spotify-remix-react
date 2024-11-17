@@ -21,7 +21,7 @@ const apiStatusConstants = {
 const SpecificPlaylistDetails = props => {
   const [specificPlaylist, setSpecificPlaylist] = useState({})
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
-  const [audioUrl, setAudioUrl] = useState('')
+  const [audioTrack, setAudioTrack] = useState('')
 
   const {match} = props
   const {id} = match.params
@@ -35,7 +35,7 @@ const SpecificPlaylistDetails = props => {
       setApiStatus(apiStatusConstants.failure)
     } else {
       setSpecificPlaylist(data.apiRes)
-      setAudioUrl(data.apiRes.tracks.items[0].track.preview_url)
+      setAudioTrack(data.apiRes.tracks.items[0])
       setApiStatus(apiStatusConstants.success)
     }
   }
@@ -55,7 +55,7 @@ const SpecificPlaylistDetails = props => {
   }
 
   const handleAudioUrl = url => {
-    setAudioUrl(url)
+    setAudioTrack(url)
   }
 
   const renderSpecificPlaylistDetailsSuccess = () => (
@@ -74,7 +74,10 @@ const SpecificPlaylistDetails = props => {
           ))}
         </ul>
       </div>
-      <AudioPlayer audioUrl={audioUrl} />
+      <AudioPlayer
+        specificPlaylist={specificPlaylist}
+        audioTrack={audioTrack}
+      />
     </div>
   )
 
