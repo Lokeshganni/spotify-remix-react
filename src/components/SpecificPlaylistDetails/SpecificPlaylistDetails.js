@@ -18,17 +18,15 @@ const apiStatusConstants = {
   failure: 'FAILURE',
 }
 
-const SpecificPlaylistDetails = props => {
+const SpecificPlaylistDetails = ({id, apiQueryParam}) => {
   const [specificPlaylist, setSpecificPlaylist] = useState({})
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
   const [audioTrack, setAudioTrack] = useState('')
 
-  const {match} = props
-  const {id} = match.params
-
   const getSpecificPlaylistData = async () => {
     setApiStatus(apiStatusConstants.inProgress)
-    const url = `https://apis2.ccbp.in/spotify-clone/playlists-details/${id}`
+    const url = `https://apis2.ccbp.in/spotify-clone/${apiQueryParam}/${id}`
+    console.log(url)
     const data = await getApiData(url)
 
     if (data.apiRes === 'failed') {

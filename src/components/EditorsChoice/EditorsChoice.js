@@ -49,7 +49,11 @@ const EditorsChoice = () => {
     <ul className="editors-choice-ul-container">
       {playlistData &&
         playlistData.items.map(each => (
-          <PlaylistCard key={each.id} playlist={each} />
+          <PlaylistCard
+            queryParam="editors-choice"
+            key={each.id}
+            playlist={each}
+          />
         ))}
     </ul>
   )
